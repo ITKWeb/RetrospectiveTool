@@ -16,10 +16,11 @@ En 5 heures et ne connaissant pas la technologie, peu de fonctionnalités ont é
 
 Les fonctionnalités qui pourraient être ajoutées (dans un ordre quelconque):  
 - Clean du code  
-- Ajout du grag and drop pour faire basculer les post-it d'une colonne à l'autre  
+- Ajout du drag and drop pour faire basculer les post-it d'une colonne à l'autre  
 - Rajouter un effet lors de l'ajout d'un post-it  
 - Possibilité de supprimer un post-it  
 - Partie serveur permettant de sauvegarder une rétrospective et d'y revenir  
+- Faire du post-it un NgComponent plutôt qu'une directive  
 
 # Installation du projet  
 
