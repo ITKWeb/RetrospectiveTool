@@ -28,8 +28,9 @@ h3 {
 .pure-menu li a:hover {
   color: black !important;
 }
+
 .ng-hide {
-  display: none;
+  display: none !important;
 }
 
 li.done {
@@ -236,4 +237,8 @@ The content `<div>` is where all your content goes.
     margin: 50px 0 20px 0;
     font-weight: 300;
     color: #888;
+}
+
+ng-show {
+ display: none !important; 
 }
