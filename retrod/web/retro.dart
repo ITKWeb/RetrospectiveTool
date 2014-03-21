@@ -40,8 +40,9 @@ class PostIt {
       this.vote = 0;
       this.category = -1;
      }    
-    
 }
+
+
 
 @NgController(
   selector: '[retro-controller]',
@@ -52,6 +53,8 @@ class RetroController {
   PostIt postItItemGood;
   PostIt postItItemMedium;
   PostIt postItItemBad;
+  
+  int state = 0;
 
   RetroController(ServerController serverController) {
     postItItemGood = new PostIt();
@@ -89,7 +92,6 @@ class RetroController {
       default:
         break;
     }
-    
     print(postItList);
   }
   
@@ -108,6 +110,18 @@ class RetroController {
 
   String classFor(PostIt postIt) {
     return postIt.vote == 0 ? 'done' : '';
+  }
+  
+  bool isEditMode(){
+    return state == 0;
+  }
+  
+  bool isVoteMode(){
+    return state == 1;
+  }
+  
+  bool isFinalMode(){
+    return state == 2;
   }
 }
 
