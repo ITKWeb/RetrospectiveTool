@@ -7,14 +7,14 @@ import 'dart:html';
 
 // Everything in the 'todo' library should be preserved by MirrorsUsed.
 @MirrorsUsed(
-    targets: const ['todo'],
+    targets: const ['retro'],
     override: '*')
 import 'dart:mirrors';
 
 main() {
   print(window.location.search);
   var module = new Module()
-      ..type(TodoController)
+      ..type(RetroController)
       ..type(PlaybackHttpBackendConfig);
 
   // If these is a query in the URL, use the server-backed

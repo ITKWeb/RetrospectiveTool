@@ -2,8 +2,6 @@ library retro;
 
 import 'package:angular/angular.dart';
 
-
-
 class PostIt {
 
     String text;
