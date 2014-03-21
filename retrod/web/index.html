@@ -16,8 +16,8 @@
 <div class="top pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
         <li class="pure-menu-selected"><a href="#">Post-it</a></li>
-        <li><a href="#">Votes</a></li>
-        <li><a href="#">Résultat</a></li>
+        <li><a href="#" ng-click="retro.setVoteMode()">Votes</a></li>
+        <li><a href="#" ng-click="retro.setFinalMode()">Résultat</a></li>
     </ul>
 </div>
 
@@ -31,13 +31,16 @@
       <form class="pure-form" onsubmit="return false;">
         <div class="pure-g cols">
             <div class="pure-u-1-3">
-            <input type="text" placeholder="Avis" ng-model="retro.postItItemGood.text">
-            <button type="submit" class="pure-button button-success" ng-click="retro.add(0)">Ajouter</button>     
+            <div ng-show="retro.isEditMode()">
+              <input type="text" placeholder="Avis" ng-model="retro.postItItemGood.text">
+              <button type="submit" class="pure-button button-success" ng-click="retro.add(0)">Ajouter</button>
+             </div>     
               <div class="col">
               <h3>Bien</h3>
                 <div ng-repeat="postit in retro.postItList | filter: {category: 0}">
                  <div class="postit">
-                  <div class="vote_action">
+                 <div ng-if="retro.isVoteMode()">
+                  <div class="vote_action" >
                     <button ng-click="retro.addVote(postit)">+</button>
                     <button ng-click="retro.removeVote(postit)">-</button>
                   </div>
@@ -55,9 +58,11 @@
                 <h3>Peut mieux faire</h3>
                 <div ng-repeat="postit in retro.postItList | filter: {category: 1}">
                  <div class="postit">
+                 <div ng-if="retro.isVoteMode()">
                   <div class="vote_action">
                     <button ng-click="retro.addVote(postit)">+</button>
                     <button ng-click="retro.removeVote(postit)">-</button>
+                  </div>
                   </div>
                   <div class="vote">{{ postit.vote }}</div>
                   {{ postit.text }} 
@@ -74,8 +79,10 @@
                 <div ng-repeat="postit in retro.postItList | filter: {category: 2}">
                  <div class="postit">
                   <div class="vote_action">
+                  <div ng-if="retro.isVoteMode()">
                     <button ng-click="retro.addVote(postit)">+</button>
                     <button ng-click="retro.removeVote(postit)">-</button>
+                  </div>
                   </div>
                   <div class="vote">{{ postit.vote }}</div>
                     {{ postit.text }}

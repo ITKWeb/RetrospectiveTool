@@ -124,6 +124,16 @@ class RetroController {
     return state == 2;
   }
   
+  setVoteMode(){
+    print("vote mode");
+    this.state = 1;
+  }
+  
+  setFinalMode(){
+    print("final mode");
+    this.state = 2;
+  }
+  
   addVote(PostIt postit){
     postit.addVote();
   }
