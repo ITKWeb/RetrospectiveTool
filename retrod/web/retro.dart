@@ -124,6 +124,10 @@ class RetroController {
     return state == 2;
   }
   
+  setEditMode(){
+    this.state = 0;
+  }
+  
   setVoteMode(){
     print("vote mode");
     this.state = 1;

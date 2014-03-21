@@ -15,9 +15,9 @@
 
 <div class="top pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
-        <li class="pure-menu-selected"><a href="#">Post-it</a></li>
-        <li><a href="#" ng-click="retro.setVoteMode()">Votes</a></li>
-        <li><a href="#" ng-click="retro.setFinalMode()">Résultat</a></li>
+        <li ng-class="{true: 'pure-menu-selected', fale: ''}[retro.isEditMode()]" ng-click="retro.setEditMode()"><a href="#">Post-it</a></li>
+        <li ng-class="{true: 'pure-menu-selected', fale: ''}[retro.isVoteMode()]"><a href="#" ng-click="retro.setVoteMode()">Votes</a></li>
+        <li ng-class="{true: 'pure-menu-selected', fale: ''}[retro.isFinalMode()]"><a href="#" ng-click="retro.setFinalMode()">Résultat</a></li>
     </ul>
 </div>
 
@@ -31,9 +31,9 @@
       <form class="pure-form" onsubmit="return false;">
         <div class="pure-g cols">
             <div class="pure-u-1-3">
-            <div ng-show="retro.isEditMode()">
+            <div ng-if="retro.isEditMode()">
               <input type="text" placeholder="Avis" ng-model="retro.postItItemGood.text">
-              <button type="submit" class="pure-button button-success" ng-click="retro.add(0)">Ajouter</button>
+              <button type="submit" class="pure-button button-success" ng-class="{false: 'pure-button-disabled', true: ''}[retro.isEditMode()]" ng-click="retro.add(0)">Ajouter</button>
              </div>     
               <div class="col">
               <h3>Bien</h3>
@@ -53,8 +53,10 @@
           </div>
     
           <div class="pure-u-1-3">
+          <div ng-if="retro.isEditMode()">
             <input type="text" placeholder="Avis" ng-model="retro.postItItemMedium.text">
-            <button type="submit" class="pure-button button-warning" ng-click="retro.add(1)">Ajouter</button>         
+            <button type="submit" class="pure-button button-warning" ng-class="{false: 'pure-button-disabled', true: ''}[retro.isEditMode()]" ng-click="retro.add(1)">Ajouter</button>         
+               </div>
                <div class="col">
                 <h3>Peut mieux faire</h3>
                 <div ng-repeat="postit in retro.postItList | filter: {category: 1}">
@@ -73,8 +75,10 @@
           </div>
     
           <div class="pure-u-1-3">
+          <div ng-if="retro.isEditMode()">
             <input type="text" placeholder="Avis" ng-model="retro.postItItemBad.text">
-            <button type="submit" class="pure-button button-error" ng-click="retro.add(2)">Ajouter</button>         
+            <button type="submit" class="pure-button button-error" ng-class="{false: 'pure-button-disabled', true: ''}[retro.isEditMode()]" ng-click="retro.add(2)">Ajouter</button>         
+              </div>
               <div class="col">
                 <h3>A ameliorer</h3>
                 <div ng-repeat="postit in retro.postItList | filter: {category: 2}">
