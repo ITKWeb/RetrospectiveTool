@@ -127,6 +127,10 @@ class RetroController {
   addVote(PostIt postit){
     postit.addVote();
   }
+  
+  removeVote(PostIt postit) {
+    postit.removeVote();
+  }
 }
 
 
