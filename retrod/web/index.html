@@ -1,0 +1,62 @@
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">    
+    <script src="main.dart" type="application/dart"></script>
+    <script src="packages/browser/dart.js"></script>
+    <script src="packages/browser/interop.js"></script>
+</head>
+<body ng-app>
+
+<div ng-hide="true" class="border well loading">Wait, we're are loading this awesome app...</div>
+  
+<div todo-controller id="layout" class="" ng-cloak>    
+
+  <div id="main">
+    <div class="header">
+        <h1>Retro</h1>
+        <h2>Votre avis est intéressant</h2>
+    </div>
+
+    <div class="content">
+      <form class="pure-form">
+        <div class="pure-g cols">
+            <div class="pure-u-1-3">
+            <input type="text" placeholder="Avis">
+            <button type="submit" class="pure-button button-success">Ajouter</button>        
+            <div class="col">
+              <!--
+              By default, grid units don't have any margin/padding.
+              If you want to add these, put them in a child container.
+              -->
+              <h3>Bien</h3>
+              <div class="postit">Les vacances</div>
+              <div class="postit">Arrivee des nouveaux et retour de veronique</div>
+              <div class="postit">Le sprint</div>
+            </div>
+          </div>
+    
+          <div class="pure-u-1-3">
+            <input type="text" placeholder="Avis">
+            <button type="submit" class="pure-button button-warning">Ajouter</button>         
+               <div class="col">
+                <h3>Peut mieux faire</h3>
+               </div>
+          </div>
+    
+          <div class="pure-u-1-3">
+            <input type="text" placeholder="Avis">
+            <button type="submit" class="pure-button button-error">Ajouter</button>         
+              <div class="col">
+                <h3>A ameliorer</h3>
+              </div>
+          </div>
+        </div>
+      </form>
+  </div>
+ </div>
+</div> 
+ 
+</body>
+</html>
