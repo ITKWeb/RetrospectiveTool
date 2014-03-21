@@ -1,7 +1,33 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+
 body {
   padding: 20px;
+  font-family: 'Droid Sans', sans-serif;
 }
 
+h3 {
+  font-family: 'Droid Sans', sans-serif;
+}
+
+.top {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  background: #333 !important;
+  color: white !important;
+}
+
+.pure-menu a {
+  color: white !important;
+}
+
+.pure-menu-selected a {
+  color: silver !important;
+}
+
+.pure-menu li a:hover {
+  color: black !important;
+}
 .ng-hide {
   display: none;
 }
@@ -53,15 +79,16 @@ input[type="text"] {
   color: #333;
   padding: 20px 10px 20px 10px;
   font-size: 13px;
+  font-family: 'Droid Sans', sans-serif;
+  position: relative;
 }
 
 .vote_action {
     display: none;
-    float: right;  
     z-index: 3;
-    position: relative;
-    top: -21px;
-    right: -11px; 
+    position: absolute;
+    top: 0px;
+    right: 0; 
 }
 
 .vote { 
@@ -101,16 +128,19 @@ input[type="text"] {
     background: rgb(202, 60, 60) !important; 
     color: white !important; 
     border-radius: 4px !important;   
+    font-family: 'Droid Sans', sans-serif !important;
 }
 .button-warning {
     background: rgb(223, 117, 20) !important; 
     color: white !important; 
-    border-radius: 4px !important;       
+    border-radius: 4px !important;   
+    font-family: 'Droid Sans', sans-serif !important;        
 }
 .button-success {
     background: rgb(28, 184, 65) !important; 
     color: white !important; 
-    border-radius: 4px !important;  
+    border-radius: 4px !important;
+    font-family: 'Droid Sans', sans-serif !important;      
 }
 .right {
   float: right;
@@ -122,6 +152,7 @@ form button {
 
 form input {
   width: 300px !important;
+  font-family: 'Droid Sans', sans-serif !important;  
 }
 ul.well {
   background: white;
@@ -178,7 +209,6 @@ The content `<div>` is where all your content goes.
 .content {
     margin: 0 auto;
     padding: 0 2em;
-    max-width: 1024px;
     margin-bottom: 50px;
     line-height: 1.6em;
 }
