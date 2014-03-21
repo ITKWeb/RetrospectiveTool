@@ -40,6 +40,8 @@ class PostIt {
       this.vote = 0;
       this.category = -1;
      }    
+    
+    getCategoryClass() => 'category-$category';
 }
 
 
