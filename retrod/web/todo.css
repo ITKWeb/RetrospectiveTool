@@ -89,21 +89,31 @@ input[type="text"] {
     position: absolute;
     top: 0px;
     right: 0; 
+    margin: 4px;
+}
+
+.vote_action button {
+  width: 30px; 
+  background: white;
+  border-radius: 5px; 
+  border: 1px solid silver;
 }
 
 .vote { 
-    display: inline;
-    float: left;  
     z-index: 3;
-    position: relative;
-    top: -20;
-    left: -11; 
+    position: absolute;
+    top: 0;
+    left: 0; 
+    vertical-align: middle;
     background: white;
     border-top-left-radius: 5px;
     border-bottom-right-radius: 5px;    
     border: 1px solid silver;
     padding: 3px 10px 3px 10px;
 }
+
+.vote span { display:inline-block; vertical-align:middle }
+
 .postit:hover .vote_action {
   display: block;
 }
