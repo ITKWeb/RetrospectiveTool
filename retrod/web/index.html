@@ -30,7 +30,8 @@
                 <div ng-repeat="postit in retro.postItList | filter: {category: 0}">
                  <div class="postit">
                   <div class="vote_action">
-                    <div>+</div><div>-</div>
+                    <button ng-click="retro.addVote(postit)">+</button>
+                    <button ng-click="retro.removeVote(postit)">-</button>
                   </div>
                   <div class="vote">{{ postit.vote }}</div>
                   {{ postit.text }} 
@@ -47,7 +48,8 @@
                 <div ng-repeat="postit in retro.postItList | filter: {category: 1}">
                  <div class="postit">
                   <div class="vote_action">
-                    <div>+</div><div>-</div>
+                    <button ng-click="retro.addVote(postit)">+</button>
+                    <button ng-click="retro.removeVote(postit)">-</button>
                   </div>
                   <div class="vote">{{ postit.vote }}</div>
                   {{ postit.text }} 
