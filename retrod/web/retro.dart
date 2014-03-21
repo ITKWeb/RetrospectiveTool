@@ -49,10 +49,15 @@ class PostIt {
 )
 class RetroController {
   List<PostIt> postItList;
-  PostIt postItItem;
+  PostIt postItItemGood;
+  PostIt postItItemMedium;
+  PostIt postItItemBad;
 
   RetroController(ServerController serverController) {
-    postItItem = new PostIt();
+    postItItemGood = new PostIt();
+    postItItemMedium = new PostIt();
+    postItItemBad = new PostIt();
+    
     postItList  = [
       new PostIt.init('Formation Angular JS' ,0),
       new PostIt('Hacking day', 0),
@@ -64,9 +69,28 @@ class RetroController {
   }
 
   add(int category) {
-    if (postItItem.isEmpty()) return;    
-    postItList.add(postItItem.clone(category));    
-    postItItem.clear();
+    
+    switch (category) {
+      case 0:
+        if (postItItemGood.isEmpty()) return;
+        postItList.add(postItItemGood.clone(category));    
+        postItItemGood.clear();
+        break;
+      case 1:
+         if (postItItemMedium.isEmpty()) return;
+         postItList.add(postItItemMedium.clone(category));    
+         postItItemMedium.clear();
+         break;
+      case 2:
+        if (postItItemBad.isEmpty()) return;
+        postItList.add(postItItemBad.clone(category));    
+        postItItemBad.clear();
+        break;
+      default:
+        break;
+    }
+    
+    print(postItList);
   }
   
   remove (PostIt postIt) {
