@@ -44,8 +44,7 @@
                     <button ng-click="retro.addVote(postit)">+</button>
                     <button ng-click="retro.removeVote(postit)">-</button>
                   </div>
-                  </div>
-                  <div class="vote">{{ postit.vote }}</div>
+                  <div class="vote" style="font-size: {{12 + postit.vote}};"><span>{{ postit.vote }}</span></div>
                   {{ postit.text }} 
                 </div>
               </div>
