@@ -63,9 +63,9 @@ class RetroController {
     
     postItList  = [
       new PostIt.init('Formation Angular JS' ,0),
-      new PostIt('Hacking day', 0),
-      new PostIt('Pizza gratuite tout les jours de la semaine', 1),
-      new PostIt('Pas d\'alcool pendant les retrospectives', 2),
+      new PostIt.init('Hacking day', 0),
+      new PostIt.init('Pizza gratuite tout les jours de la semaine', 1),
+      new PostIt.init('Pas d\'alcool pendant les retrospectives', 2),
     ];  
 
     serverController.init(this);
@@ -122,6 +122,10 @@ class RetroController {
   
   bool isFinalMode(){
     return state == 2;
+  }
+  
+  addVote(PostIt postit){
+    postit.addVote();
   }
 }
 
