@@ -113,8 +113,6 @@ input[type="text"] {
     padding: 3px 10px 3px 10px;
 }
 
-.vote span { display:inline-block; vertical-align:middle }
-
 .postit:hover .vote_action {
   display: block;
 }
