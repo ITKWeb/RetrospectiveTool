@@ -2,6 +2,7 @@ import 'package:di/di.dart';
 import 'package:angular/angular.dart';
 import 'package:angular/playback/playback_http.dart';
 import 'retro.dart';
+import 'comp/postit/postit_component.dart';
 
 import 'dart:html';
 
@@ -15,7 +16,8 @@ main() {
    print(window.location.search);
    var module = new Module()
        ..type(RetroController)
-       ..type(PlaybackHttpBackendConfig);
+       ..type(PlaybackHttpBackendConfig)
+       ..type(PostItComponent);
  
    // If these is a query in the URL, use the server-backed
    // TodoController.  Otherwise, use the stored-data controller.

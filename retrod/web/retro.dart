@@ -6,41 +6,14 @@ class PostIt {
 
     String text;
     int vote;
-    /* categories :
-     *  1 -> Bien
-     *  2 -> Peut mieux faire
-     *  3 -> Pas bien
-     */
     int category;
        
-    PostIt([String this.text = '', int this.vote = 0, int this.category = -1]);
+    PostIt({ String this.text : '', int this.vote : 0, int this.category : -1 });
     
-    PostIt.init(String text, int category){
-      this.text = text;
-      this.vote = 0;
-      this.category = category;
-    }
+    PostIt.init(this.text, this.category, [this.vote = 0]);
     
-    addVote() {
-      this.vote++;
-    }
-    
-    removeVote() {
-      if (this.vote > 0 ) this.vote--;
-    }
-    
-    bool isEmpty() {
-      return this.text == '';
-    }
-    
-    clone(int category) => new PostIt(this.text, this.vote, category);
-    
-    clear() {
-      this.text = '';
-      this.vote = 0;
-      this.category = -1;
-     }    
-    
+    upVote() => vote++;
+    downVote() => vote > 0 ? vote-- : vote;
     getCategoryClass() => 'category-$category';
 }
 
@@ -51,102 +24,36 @@ class PostIt {
   publishAs: 'retro'
 )
 class RetroController {
-  List<PostIt> postItList;
-  PostIt postItItemGood;
-  PostIt postItItemMedium;
-  PostIt postItItemBad;
   
-  int state = 0;
+  List<PostIt> postItList;
+  String newPostItTextGood;
+  String newPostItTextAverage;
+  String newPostItTextBad;
+  
+  int mode = 0;
 
   RetroController(ServerController serverController) {
-    postItItemGood = new PostIt();
-    postItItemMedium = new PostIt();
-    postItItemBad = new PostIt();
-    
     postItList  = [
-      new PostIt.init('Formation Angular JS' ,0),
-      new PostIt.init('Hacking day', 0),
-      new PostIt.init('Pizza gratuite tout les jours de la semaine', 1),
-      new PostIt.init('Pas d\'alcool pendant les retrospectives', 2),
+      new PostIt.init('Formation Angular JS' ,0, 5),
+      new PostIt.init('Hacking day', 0, 12),
+      new PostIt.init('Pizza gratuite tout les jours de la semaine', 1, 6),
+      new PostIt.init('Pas d\'alcool pendant les retrospectives', 2, 4),
     ];  
 
     serverController.init(this);
   }
 
-  add(int category) {
-    
-    switch (category) {
-      case 0:
-        if (postItItemGood.isEmpty()) return;
-        postItList.add(postItItemGood.clone(category));    
-        postItItemGood.clear();
-        break;
-      case 1:
-         if (postItItemMedium.isEmpty()) return;
-         postItList.add(postItItemMedium.clone(category));    
-         postItItemMedium.clear();
-         break;
-      case 2:
-        if (postItItemBad.isEmpty()) return;
-        postItList.add(postItItemBad.clone(category));    
-        postItItemBad.clear();
-        break;
-      default:
-        break;
-    }
-    print(postItList);
-  }
+  add(int cat, String text) => this ..postItList.add(new PostIt(text: text, category: cat))
+                                    ..newPostItTextGood='' 
+                                    ..newPostItTextAverage='' 
+                                    ..newPostItTextBad='';
   
-  remove (PostIt postIt) {
-    postItList.remove(postIt);
-  }
+  remove(PostIt postIt) =>postItList.remove(postIt); 
+  removeAll(int category) => postItList.removeWhere((postIt) => postIt.category == category);
+  reset() => postItList.forEach((postIt) => postIt.vote = 0);
   
-  /* supprime tout les postit associé à une catégorie */
-  removeAll(int category) {
-    postItList.removeWhere((postIt) => postIt.category == category);
-  }
+  setMode(int m) => mode = m;
   
-  resetVotes() {
-    postItList.forEach((postIt) => postIt.vote = 0);
-  }
-
-  String classFor(PostIt postIt) {
-    return postIt.vote == 0 ? 'done' : '';
-  }
-  
-  bool isEditMode(){
-    return state == 0;
-  }
-  
-  bool isVoteMode(){
-    return state == 1;
-  }
-  
-  bool isFinalMode(){
-    return state == 2;
-  }
-  
-  setEditMode(){
-    this.state = 0;
-  }
-  
-  setVoteMode(){
-    print("vote mode");
-    this.state = 1;
-  }
-  
-  setFinalMode(){
-    print("final mode");
-    this.state = 2;
-  }
-  
-  addVote(PostIt postit){
-    postit.addVote();
-  }
-  
-  removeVote(PostIt postit) {
-    postit.removeVote();
-  }
 }
 
 

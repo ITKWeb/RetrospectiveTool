@@ -1,13 +1,13 @@
 <html>
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="todo.css">
-<link rel="stylesheet"
-  href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<script src="main.dart" type="application/dart"></script>
-<script src="packages/browser/dart.js"></script>
-<script src="packages/browser/interop.js"></script>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="todo.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <script src="main.dart" type="application/dart"></script>
+  <script src="packages/browser/dart.js"></script>
+  <script src="packages/browser/interop.js"></script>
+  <link rel="import" href="comp/postit/postit_component.html">
 </head>
 <body ng-app>
 
@@ -18,15 +18,9 @@
 
     <div class="top pure-menu pure-menu-open pure-menu-horizontal">
       <ul>
-        <li
-          ng-class="{true: 'pure-menu-selected', fale: ''}[retro.isEditMode()]"
-          ng-click="retro.setEditMode()"><a href="#">Post-it</a></li>
-        <li
-          ng-class="{true: 'pure-menu-selected', fale: ''}[retro.isVoteMode()]"><a
-          href="#" ng-click="retro.setVoteMode()">Votes</a></li>
-        <li
-          ng-class="{true: 'pure-menu-selected', fale: ''}[retro.isFinalMode()]"><a
-          href="#" ng-click="retro.setFinalMode()">Résultat</a></li>
+        <li ng-class="{true: 'pure-menu-selected', false: ''}[retro.mode == 0]" ng-click="retro.setMode(0)"><a href="#post-it">Post-it</a></li>
+        <li ng-class="{true: 'pure-menu-selected', false: ''}[retro.mode == 1]" ng-click="retro.setMode(1)"><a href="#votes">Votes</a></li>
+        <li ng-class="{true: 'pure-menu-selected', false: ''}[retro.mode == 2]" ng-click="retro.setMode(2)"><a href="#results">Résultat</a></li>
       </ul>
     </div>
 
@@ -37,88 +31,44 @@
       </div>
 
       <div class="content">
-        <div ng-if="retro.isEditMode() || retro.isVoteMode()">
+        <div ng-if="retro.mode == 0 || retro.mode == 1">
           <div class="pure-g cols">
 
             <div class="pure-u-1-3">
-              <div ng-if="retro.isEditMode()">
-                <input type="text" placeholder="Avis"
-                  ng-model="retro.postItItemGood.text">
-                <button type="submit" class="pure-button button-success"
-                  ng-class="{false: 'pure-button-disabled', true: ''}[retro.isEditMode()]"
-                  ng-click="retro.add(0)">Ajouter</button>
+              <div ng-if="retro.mode == 0">
+                <input type="text" placeholder="Avis" ng-model="retro.newPostItTextGood">
+                <button type="submit" class="pure-button button-success" ng-click="retro.add(0, retro.newPostItTextGood)">Ajouter</button>
               </div>
               <div class="col">
                 <h3>Bien</h3>
-                <div
-                  ng-repeat="postit in retro.postItList | filter: {category: 0}">
-                  <div class="postit category-0">
-                    <div ng-if="retro.isVoteMode()">
-                      <div class="vote_action">
-                        <i class="fa fa-thumbs-up fa-2x" ng-click="retro.addVote(postit)"></i>
-                        <i class="fa fa-thumbs-down fa-2x" ng-click="retro.removeVote(postit)"></i>
-                      </div>
-                    </div>
-                    <div class="vote"
-                      style="font-size: {{12+postit.vote}}">
-                      <span>{{ postit.vote }}</span>
-                    </div>
-                    {{ postit.text }}
-
-                  </div>
+                <div ng-repeat="postit in retro.postItList | filter: {category: 0}">
+                  <postit text="postit.text" vote="postit.vote" category="postit.category" mode="retro.mode" on-remove="retro.remove(postit)"></postit>
                 </div>
               </div>
             </div>
+            
             <div class="pure-u-1-3">
-              <div ng-if="retro.isEditMode()">
-                <input type="text" placeholder="Avis"
-                  ng-model="retro.postItItemMedium.text">
-                <button type="submit" class="pure-button button-warning"
-                  ng-class="{false: 'pure-button-disabled', true: ''}[retro.isEditMode()]"
-                  ng-click="retro.add(1)">Ajouter</button>
+              <div ng-if="retro.mode == 0">
+                <input type="text" placeholder="Avis" ng-model="retro.newPostItTextAverage">
+                <button type="submit" class="pure-button button-warning" ng-click="retro.add(1,retro.newPostItTextAverage)">Ajouter</button>
               </div>
               <div class="col">
                 <h3>Peut mieux faire</h3>
-                <div
-                  ng-repeat="postit in retro.postItList | filter: {category: 1}">
-                  <div class="postit category-1">
-                    <div ng-if="retro.isVoteMode()">
-                      <div class="vote_action">
-                        <i class="fa fa-thumbs-up fa-2x" ng-click="retro.addVote(postit)"></i>
-                        <i class="fa fa-thumbs-down fa-2x" ng-click="retro.removeVote(postit)"></i>
-                      </div>
-                    </div>
-                    <div class="vote"
-                      style="font-size: {{12+postit.vote}}">{{postit.vote}}</div>
-                    {{ postit.text }}
-                  </div>
+                <div ng-repeat="postit in retro.postItList | filter: {category: 1}">
+                  <postit text="postit.text" vote="postit.vote" category="postit.category" mode="retro.mode" on-remove="retro.remove(postit)"></postit>
                 </div>
               </div>
             </div>
 
             <div class="pure-u-1-3">
-              <div ng-if="retro.isEditMode()">
-                <input type="text" placeholder="Avis"
-                  ng-model="retro.postItItemBad.text">
-                <button type="submit" class="pure-button button-error"
-                  ng-class="{false: 'pure-button-disabled', true: ''}[retro.isEditMode()]"
-                  ng-click="retro.add(2)">Ajouter</button>
+              <div ng-if="retro.mode == 0">
+                <input type="text" placeholder="Avis" ng-model="retro.newPostItTextBad">
+                <button type="submit" class="pure-button button-error" ng-click="retro.add(2,retro.newPostItTextBad)">Ajouter</button>
               </div>
               <div class="col">
                 <h3>A améliorer</h3>
-                <div
-                  ng-repeat="postit in retro.postItList | filter: {category: 2}">
-                  <div class="postit category-2">
-                    <div ng-if="retro.isVoteMode()">
-                      <div class="vote_action">
-                        <i class="fa fa-thumbs-up fa-2x" ng-click="retro.addVote(postit)"></i>
-                        <i class="fa fa-thumbs-down fa-2x" ng-click="retro.removeVote(postit)"></i>
-                      </div>
-                    </div>
-                    <div class="vote"
-                      style="font-size: {{12+postit.vote}}">{{postit.vote}}</div>
-                    {{ postit.text }}
-                  </div>
+                <div ng-repeat="postit in retro.postItList | filter: {category: 2}">
+                  <postit text="postit.text" vote="postit.vote" category="postit.category" mode="retro.mode" on-remove="retro.remove(postit)"></postit>
                 </div>
               </div>
             </div>
@@ -126,18 +76,13 @@
         </div>
       </div>
 
-      <div ng-if="retro.isFinalMode()">
+      <div ng-if="retro.mode == 2">
         <div class="pure-g cols">
           <div class="pure-u-1-1">
             <div class="col">
               <h3>Synthèse</h3>
-              <div
-                ng-repeat="postit in retro.postItList | orderBy:'vote':true">
-                <div class="postit {{ postit.getCategoryClass() }}">
-                  <div class="vote"
-                    style="font-size: {{12+postit.vote}}">{{  postit.vote }}</div>
-                  {{ postit.text }}
-                </div>
+              <div ng-repeat="postit in retro.postItList | orderBy:'vote':true">
+                 <postit text="postit.text" vote="postit.vote" category="postit.category" mode="retro.mode" on-remove="retro.remove(postit)"></postit>
               </div>
             </div>
           </div>

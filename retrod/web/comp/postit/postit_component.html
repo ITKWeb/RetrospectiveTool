@@ -1,0 +1,15 @@
+<div class="postit" ng-class="comp.categoryClass()">
+  <div ng-if="comp.mode == 1">
+    <div class="action">
+      <i class="fa fa-thumbs-o-up fa-2x" ng-click="comp.upVote()"></i>
+      <i class="fa fa-thumbs-o-down fa-2x" ng-click="comp.downVote()"></i>
+    </div>
+  </div>
+  <div ng-if="comp.mode == 0">
+    <div class="action">
+      <i class="fa fa-trash-o fa-2x" ng-click="comp.remove()"></i>
+    </div>
+  </div>
+  <div class="vote" style="font-size: {{12+comp.vote}}">{{comp.vote}}</div>
+  <span>{{ comp.text }}</span>
+</div>
