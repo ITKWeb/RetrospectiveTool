@@ -15,12 +15,12 @@ Ce projet a été développé en 5 heures et utilise AngularDart.
 En 5 heures et ne connaissant pas la technologie, peu de fonctionnalités ont été implémentées et certaines parties sont mal codées mais le but n'était pas là...  
 
 Les fonctionnalités qui pourraient être ajoutées (dans un ordre quelconque):  
-- Clean du code  
+- Clean du code : **EN COURS**    
 - Ajout du drag and drop pour faire basculer les post-it d'une colonne à l'autre  
 - Rajouter un effet lors de l'ajout d'un post-it  
-- Possibilité de supprimer un post-it  
+- Possibilité de supprimer un post-it : **DONE**  
 - Partie serveur permettant de sauvegarder une rétrospective et d'y revenir  
-- Faire du post-it un NgComponent plutôt qu'une directive  
+- Faire du post-it un NgComponent plutôt qu'une directive : **DONE**    
 
 # Installation du projet  
 
